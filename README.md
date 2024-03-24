@@ -44,3 +44,22 @@
 
 - I think this task might have been quick due to how I structured
   the code in previous tasks
+
+### LsTree
+
+- This one was the hardest yet, I wrote a lot of code and made early progress
+  the structure of the project and the refactoring really helped.
+  However when I ran the tests it was giving out badly parsed strings
+  I though this was stemming from bad implementation of the Hex types.
+  In the end I had to learn how to use Trace to debug it then
+  the issue became apparent, I wasnt parsing the string correctly in ParseEnties
+
+- Following passing the tests I refactored the project, I moved functions common to
+  multiple functions into Util files in a utils foleder and created an Index to wrap them all.
+  The intention here is to make the next steps easier.
+
+- Compared to the http server which I did all in one file the code for this one is growing fast.
+  I could probably refactor to reduce the code foot print but I think using a function per command
+  makes it a lot easier to reason about and develop.
+
+- For this one I became very familiar with mapM\_, Trace and was able to use an ADT

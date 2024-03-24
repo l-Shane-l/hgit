@@ -6,7 +6,7 @@ where
 import Codec.Compression.Zlib (compress)
 import qualified Data.ByteString.Lazy.Char8 as LC
 import Data.Digest.Pure.SHA (sha1, showDigest)
-import Utils (readFileContents, writeGitObject)
+import Utils.Index (readFileContents, writeGitObject)
 
 hashAndWriteObject :: FilePath -> IO ()
 hashAndWriteObject filePath = do

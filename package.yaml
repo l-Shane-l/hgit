@@ -28,13 +28,12 @@ dependencies:
   - zlib # zlib compression (git uses it)
   - deepseq
   - SHA
+  - base16-bytestring
   # parsing libs
   - attoparsec
   # testing
   - HUnit
 
-library:
-  source-dirs: src
 
 executables:
   hs-git-clone-exe:

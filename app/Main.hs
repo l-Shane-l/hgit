@@ -7,12 +7,14 @@ module Main (main) where
 import CatFile
 import HashObject
 import Init
+import LsTree
 import System.Environment (getArgs)
-import System.IO (IOMode (..), hGetContents, hPutStrLn, withBinaryFile, withFile)
-import Utils
+import Utils.Index
 
 -- Parses command line arguments and executes the corresponding action
 processArgs :: [String] -> IO ()
+processArgs ("ls-tree" : "--name-only" : treeSha : _) = lsTree treeSha True
+processArgs ("ls-tree" : treeSha : _) = lsTree treeSha False
 processArgs ("hash-object" : "-w" : filePath : _) = hashAndWriteObject filePath
 processArgs ("cat-file" : "-p" : hash : _) = do
   content <- readGitBlobObject hash

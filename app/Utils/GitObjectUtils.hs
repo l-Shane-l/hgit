@@ -1,17 +1,24 @@
-module Utils
-  ( readFileContents,
+module Utils.GitObjectUtils
+  ( readAndDecompressGitObject,
     writeGitObject,
     gitObjectPath,
+    readFileContents,
     outputContent,
   )
 where
 
+import Codec.Compression.Zlib (decompress)
+import Control.DeepSeq (deepseq)
 import qualified Data.ByteString.Lazy as LB
 import System.Directory (createDirectoryIfMissing)
 import System.FilePath ((</>))
+import System.IO (IOMode (..), hGetContents, withBinaryFile)
 
-readFileContents :: FilePath -> IO LB.ByteString
-readFileContents = LB.readFile
+-- Reads and decompresses a Git object from a given file path
+readAndDecompressGitObject :: FilePath -> IO LB.ByteString
+readAndDecompressGitObject path = withBinaryFile path ReadMode $ \handle -> do
+  compressedData <- LB.hGetContents handle
+  compressedData `deepseq` return $ decompress compressedData
 
 writeGitObject :: String -> LB.ByteString -> IO ()
 writeGitObject sha compressed = do
@@ -22,6 +29,9 @@ writeGitObject sha compressed = do
 
 gitObjectPath :: String -> FilePath
 gitObjectPath hash = ".git" </> "objects" </> take 2 hash </> drop 2 hash
+
+readFileContents :: FilePath -> IO LB.ByteString
+readFileContents = LB.readFile
 
 -- Outputs the given ByteString content to the console
 outputContent :: LB.ByteString -> IO ()
