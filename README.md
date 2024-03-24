@@ -1,60 +1,20 @@
-[![progress-banner](https://backend.codecrafters.io/progress/git/0612b2fd-2fc8-47aa-9946-746c0bd528fc)](https://app.codecrafters.io/users/codecrafters-bot?r=2qF)
+[![progress-banner](https://backend.codecrafters.io/progress/git/0612b2fd-2fc8-47aa-9946-746c0bd528fc)](https://app.codecrafters.io/users/codecrafters-bot?r=2qF
 
-This is a starting point for Haskell solutions to the
-["Build Your Own Git" Challenge](https://codecrafters.io/challenges/git).
+# Hgit
 
-In this challenge, you'll build a small Git implementation that's capable of
-initializing a repository, creating commits and cloning a public repository.
-Along the way we'll learn about the `.git` directory, Git objects (blobs,
-commits, trees etc.), Git's transfer protocols and more.
+- This is a clone of the git command line tool, the intention of this project is educational
 
-**Note**: If you're viewing this repo on GitHub, head over to
-[codecrafters.io](https://codecrafters.io) to try the challenge.
+## To Run
 
-# Passing the first stage
+- stack run
 
-The entry point for your Git implementation is in `app/Main.hs`. Study and
-uncomment the relevant code, and push your changes to pass the first stage:
+## Notes while building
 
-```sh
-git add .
-git commit -m "pass 1st stage" # any msg
-git push origin master
-```
+### Stage 1
 
-That's all!
+- Using lazy byte string might give better performance for larger files, however using it hear results ina file handle error.
+- I used deepseq to make it eagerly evaluate as a quick fix but this probably destroys any value in using Lazy ByteString over ByteString.
 
-# Stage 2 & beyond
+- I tried to use Monads to make the operations safe especially around the files not being present.
 
-Note: This section is for stages 2 and beyond.
-
-1. Ensure you have `stack` installed locally
-1. Run `./your_git.sh` to run your Git implementation, which is implemented in
-   `app/Main.hs`.
-1. Commit your changes and run `git push origin master` to submit your solution
-   to CodeCrafters. Test output will be streamed to your terminal.
-
-# Testing locally
-
-The `your_git.sh` script is expected to operate on the `.git` folder inside the
-current working directory. If you're running this inside the root of this
-repository, you might end up accidentally damaging your repository's `.git`
-folder.
-
-We suggest executing `your_git.sh` in a different folder when testing locally.
-For example:
-
-```sh
-mkdir -p /tmp/testing && cd /tmp/testing
-/path/to/your/repo/your_git.sh init
-```
-
-To make this easier to type out, you could add a
-[shell alias](https://shapeshed.com/unix-alias/):
-
-```sh
-alias mygit=/path/to/your/repo/your_git.sh
-
-mkdir -p /tmp/testing && cd /tmp/testing
-mygit init
-```
+- I also tried to implement this as a library but it was easier in the end to just put all the files into app
