@@ -13,6 +13,7 @@ import Utils.Index
 
 -- Parses command line arguments and executes the corresponding action
 processArgs :: [String] -> IO ()
+processArgs ["write-tree"] = putStrLn "Work In Progress"
 processArgs ("ls-tree" : "--name-only" : treeSha : _) = lsTree treeSha True
 processArgs ("ls-tree" : treeSha : _) = lsTree treeSha False
 processArgs ("hash-object" : "-w" : filePath : _) = hashAndWriteObject filePath
