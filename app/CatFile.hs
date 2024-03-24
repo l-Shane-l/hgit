@@ -1,6 +1,5 @@
 module CatFile
   ( readGitBlobObject,
-    outputContent,
   )
 where
 
@@ -46,7 +45,3 @@ parseGitObject objectData =
         then -- The actual content is after the first null byte, which is the second part of the list
           Just (parts !! 1)
         else Nothing
-
--- Outputs the given ByteString content to the console
-outputContent :: LB.ByteString -> IO ()
-outputContent = LB.putStr

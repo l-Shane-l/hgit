@@ -27,6 +27,7 @@ dependencies:
   - word8 # works well with attoparsec
   - zlib # zlib compression (git uses it)
   - deepseq
+  - SHA
   # parsing libs
   - attoparsec
   # testing

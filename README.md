@@ -1,8 +1,15 @@
-[![progress-banner](https://backend.codecrafters.io/progress/git/0612b2fd-2fc8-47aa-9946-746c0bd528fc)](https://app.codecrafters.io/users/codecrafters-bot?r=2qF
-
 # Hgit
 
-- This is a clone of the git command line tool, the intention of this project is educational
+<!--toc:start-->
+
+- [Hgit](#hgit)
+
+  - [To Run](#to-run)
+  - [Notes while building](#notes-while-building) - [Stage 1](#stage-1)
+  <!--toc:end-->
+
+- This is a clone of the git command line tool,
+  the intention of this project is educational
 
 ## To Run
 
@@ -10,11 +17,30 @@
 
 ## Notes while building
 
-### Stage 1
+### Init
 
-- Using lazy byte string might give better performance for larger files, however using it hear results ina file handle error.
-- I used deepseq to make it eagerly evaluate as a quick fix but this probably destroys any value in using Lazy ByteString over ByteString.
+- This was pretty standard, one thing to note was createDirectoryIfMissing
+  which is a really useful function.
 
-- I tried to use Monads to make the operations safe especially around the files not being present.
+### CatFile
 
-- I also tried to implement this as a library but it was easier in the end to just put all the files into app
+- Using lazy byte string might give better performance for larger files,
+  however using it hear results ina file handle error.
+- I used deepseq to make it eagerly evaluate as a quick fix but this probably
+  destroys any value in using Lazy ByteString over ByteString.
+
+- I tried to use Monads to make the operations safe especially
+  around the files not being present.
+
+- I also tried to implement this as a library but it was easier in
+  the end to just put all the files into app
+
+### HashObject
+
+- This one was surprising quick to implement mostly due to the SHA library
+
+- For this task I refactored the code and created a Utils.hs file for
+  common functions that really helped.
+
+- I think this task might have been quick due to how I structured
+  the code in previous tasks
